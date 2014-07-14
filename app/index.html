@@ -1,12 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  	<meta charset="UTF-8">
-  	<title>Document</title>
-  	<link rel="stylesheet" media="screen" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" media="screen" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" media="screen" href="lib/gridster/dist/jquery.gridster.css">
+    <style type="text/css">
+        html, body, #main {
+            background: #f4f7f8;
+            width: 100%;
+            height: 100%;
+        }
+
+        .gridster > ul {
+            min-width: 100%;
+        }
+
+        .gs-w {
+            background: #fff;
+        }
+            .gs-w > section {
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+
+        .widget {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            border: 1px solid #ddd;
+            box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.15);
+        }
+
+            .widget-chrome {
+                background: #f4f7f8;
+                color: #555;
+                font-size: 10pt;
+                height: 25px;
+                cursor: default;
+            }
+
+                .widget-chrome > img {
+                    max-height: 19px;
+                    max-width: 19px;
+                    margin: 3px;
+                    float: left;
+                }
+
+                .widget-chrome > .name {
+                    line-height: 25px;
+                    white-space: nowrap;
+                    margin-left: 3px;
+                    max-width: 115px;
+                    overflow: hidden;
+                    display: block;
+                    float: left;
+                }
+
+                .widget-chrome > .widget-chrome-controls {
+                    float: right;
+                    margin: 3px 6px;
+                }
+
+            .widget-body {
+                position: absolute;
+                margin-top: 25px;
+                border: 0;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: auto;
+                height: auto;
+            }
+
+            .widget-iframe {
+                width: 100%;
+                height: 100%;
+                border: 0;
+                z-index: 2;
+            }
+
+            #drag-mask {
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 100;
+            }
+    </style>
 </head>
 <body>
-<div id="main" class="container"></div>
+<div id="main"></div>
+<div id="drag-mask"></div>
+<script src="lib/jquery/dist/jquery.js"></script>
+<script src="lib/gridster/dist/jquery.gridster.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

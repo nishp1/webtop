@@ -1,10 +1,17 @@
 /** @jsx React.DOM */
-var React = require('react');
+var React = require('react/addons');
+var GridsterLayout = require('./layouts/gridster');
 
 var APP = React.createClass({
-    render:function(){
-        return <h1>MY FLUX APP</h1>
+
+    render: function () {
+        return (
+            <div>
+                <GridsterLayout></GridsterLayout>
+            </div>
+        );
     }
+
 });
 
 module.exports = APP;
