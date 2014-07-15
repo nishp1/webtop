@@ -15,7 +15,13 @@ var sassConfig = {
     includePaths: ['app/styles']
 };
 var httpPort = 4000;
-var vendorPaths = ['es5-shim/es5-sham.js', 'es5-shim/es5-shim.js', 'gridster/dist/jquery.gridster.css'];
+
+var vendorPaths = [
+    'es5-shim/es5-sham.js',
+    'es5-shim/es5-shim.js',
+    'gridster/dist/jquery.gridster.css',
+    'jquery-ui/themes/base/jquery.ui.resizable.css'
+];
 
 
 if (gulp.env.production) {
@@ -43,6 +49,9 @@ gulp.task('vendor', function() {
     paths = vendorPaths.map(function(p) {
         return path.resolve("./bower_components", p);
     });
+    paths = paths.concat(vendorPaths.map(function(p) {
+        return path.resolve("./node_modules", p);
+    }));
     return gulp.src(paths).pipe(gulp.dest('dist/assets/vendor'));
 });
 
