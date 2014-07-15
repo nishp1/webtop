@@ -1,0 +1,13 @@
+.gridster > ul {
+    min-width: 100%;
+}
+
+.gs-w {
+    background: #fff;
+
+    > section {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+}

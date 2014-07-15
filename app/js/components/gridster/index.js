@@ -1,5 +1,7 @@
 /** @jsx React.DOM */
 var React = require('react');
+var $ = require('jquery');
+require('gridster');
 
 var Gridster = React.createClass({
 

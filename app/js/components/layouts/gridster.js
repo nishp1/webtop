@@ -14,7 +14,8 @@ var GridsterLayout = React.createClass({
                 col: 1,
                 row: 1,
                 icon: 'foo',
-                name: 'Widget 1'
+                name: 'Widget 1',
+                url: 'about:blank'
             }, {
                 key: 'test1',
                 width: 1,
@@ -22,7 +23,8 @@ var GridsterLayout = React.createClass({
                 col: 2,
                 row: 1,
                 icon: 'foo',
-                name: 'Widget 2'
+                name: 'Widget 2',
+                url: 'about:blank'
             }, {
                 key: 'test2',
                 width: 1,
@@ -30,7 +32,8 @@ var GridsterLayout = React.createClass({
                 col: 3,
                 row: 1,
                 icon: 'foo',
-                name: 'Widget 3'
+                name: 'Widget 3',
+                url: 'about:blank'
             }]
         };
     },

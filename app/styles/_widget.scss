@@ -1,0 +1,57 @@
+.widget {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.15);
+
+    > .widget-chrome {
+        background: #f4f7f8;
+        color: #555;
+        font-size: 10pt;
+        height: 25px;
+        cursor: default;
+
+        > img {
+            max-height: 19px;
+            max-width: 19px;
+            margin: 3px;
+            float: left;
+        }
+
+        > .name {
+            line-height: 25px;
+            white-space: nowrap;
+            margin-left: 3px;
+            max-width: 115px;
+            overflow: hidden;
+            display: block;
+            float: left;
+        }
+
+        > .widget-chrome-controls {
+            float: right;
+            margin: 3px 6px;
+        }
+    }
+
+    > .widget-body {
+        position: absolute;
+        margin-top: 25px;
+        border: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: auto;
+        height: auto;
+    }
+
+    .widget-iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        z-index: 2;
+    }
+}
