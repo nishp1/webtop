@@ -4,16 +4,6 @@ var React = require('react/addons');
 
 var WidgetChrome = React.createClass({
 
-    renderActions: function () {
-        return (
-            <ul className="widget-chrome-controls list-unstyled">
-                <li>
-                    <a title="Close" className="close-btn glyphicon glyphicon-remove"></a>
-                </li>
-            </ul>
-        )
-    },
-
     render: function () {
         var widget = this.props.widget;
 
@@ -22,8 +12,8 @@ var WidgetChrome = React.createClass({
 
         return (
             <div className="widget-chrome">
-                <img src="{icon}" />
-                { this.renderActions() }
+                <img src={icon} />
+                { this.props.children }
                 <span className="name">{name}</span>
             </div>
         );

@@ -14,7 +14,18 @@ var GridsterWidget = React.createClass({
 
         return (
             <div className="widget gridster-widget">
-                { this.transferPropsTo(<WidgetChrome />) }
+                {
+                    this.transferPropsTo(
+                        <WidgetChrome>
+                            <ul className="widget-chrome-controls list-unstyled">
+                                <li>
+                                    <a title="Close" className="glyphicon glyphicon-remove"></a>
+                                </li>
+                            </ul>
+
+                        </WidgetChrome>
+                    )
+                }
                 <div className="widget-body">
                     { this.transferPropsTo(<WidgetIframe />) }
                 </div>

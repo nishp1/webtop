@@ -23,6 +23,10 @@ html, body, #main, #layout-container {
     }
 }
 
+a.glyphicon:hover {
+    text-decoration: none;
+}
+
 @import 'gridster';
 @import 'desktop';
 @import 'widget';
