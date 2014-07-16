@@ -1,13 +1,15 @@
 /** @jsx React.DOM */
-var React = require('react/addons');
-var Gridster  = require('../gridster');
-var GridsterWidget = require('../widgets/gridster');
+var React           = require('react/addons');
+var _               = require('lodash');
+
+var Gridster        = require('../gridster');
+var GridsterWidget  = require('../widgets/gridster');
 
 var GridsterLayout = React.createClass({
 
     getInitialState: function () {
         return {
-            items: [{
+            widgets: [{
                 key: 'test0',
                 width: 1,
                 height: 1,
@@ -38,16 +40,24 @@ var GridsterLayout = React.createClass({
         };
     },
 
+    close: function (widget) {
+        this.setState({
+            widgets: _.pull(this.state.widgets, widget)
+        });
+    },
+
     render: function () {
-        var items = this.state.items.map(function(item) {
+        var me = this;
+        var widgets = this.state.widgets.map(function(item) {
             return (
-                <GridsterWidget widget={item}></GridsterWidget>
+                <GridsterWidget widget={item} onClose={me.close}></GridsterWidget>
             );
         });
+
         return (
             <div className="gridster-layout">
                 <Gridster>
-                    {items}
+                    {widgets}
                 </Gridster>
             </div>
         );

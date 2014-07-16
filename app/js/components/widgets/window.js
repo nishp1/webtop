@@ -27,6 +27,10 @@ var WidgetWindow = React.createClass({
         this.props.onMinimize(this.props.widget);
     },
 
+    handleClose: function () {
+        this.props.onClose(this.props.widget);
+    },
+
     render: function () {
         var widget = this.props.widget;
 
@@ -45,6 +49,12 @@ var WidgetWindow = React.createClass({
             'minimized': widget.minimized
         });
 
+        var maximizeClasses = cx({
+            'glyphicon': true,
+            'glyphicon-resize-full': !widget.maximized,
+            'glyphicon-resize-small': widget.maximized,
+        });
+
         return (
             <div className={classes} style={styles} onMouseDown={this.handleMouseDown}>
                 {
@@ -52,11 +62,14 @@ var WidgetWindow = React.createClass({
                         <WidgetChrome>
                             <ul className="widget-chrome-controls list-unstyled">
                                 <li>
-                                    <a title="Maximize" className="glyphicon glyphicon-resize-full" onClick={this.handleMaximize}></a>
+                                    <a title="Minimize" className="glyphicon glyphicon-minus" onClick={this.handleMinimize}></a>
+                                </li>
+                                <li>
+                                    <a title={widget.maximized ? "Restore" : "Maximize"} className={maximizeClasses} onClick={this.handleMaximize}></a>
                                 </li>
 
                                 <li>
-                                    <a title="Close" className="close-btn glyphicon glyphicon-remove"></a>
+                                    <a title="Close" className="glyphicon glyphicon-remove" onClick={this.handleClose}></a>
                                 </li>
                             </ul>
                         </WidgetChrome>

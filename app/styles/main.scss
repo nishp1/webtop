@@ -1,3 +1,6 @@
+$widget-bg: #f4f7f8;
+$widget-bg-active: darken($widget-bg, 5%);
+
 html, body, #main, #layout-container {
     background: #f4f7f8;
     width: 100%;
@@ -23,6 +26,9 @@ html, body, #main, #layout-container {
     }
 }
 
+a {
+    cursor: pointer;
+}
 a.glyphicon:hover {
     text-decoration: none;
 }

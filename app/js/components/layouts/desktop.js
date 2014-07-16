@@ -1,7 +1,28 @@
 /** @jsx React.DOM */
-var React   = require('react/addons');
-var Widget  = require('../widgets/window');
-var _       = require('lodash');
+var React           = require('react/addons');
+var _               = require('lodash');
+
+var Widget          = require('../widgets/window');
+var WidgetChrome    = require('../widgets/chrome');
+
+var DesktopTaskbar = React.createClass({
+
+    render: function () {
+        var me = this;
+
+        var taskbarChromes = this.props.widgets.map(function(widget) {
+            return (
+                <WidgetChrome widget={widget} onClick={me.props.onActivate}></WidgetChrome>
+            );
+        });
+        return (
+            <div className="layout-desktop-taskbar">
+                {taskbarChromes}
+            </div>
+        );
+    }
+
+});
 
 var DesktopLayout = React.createClass({
 
@@ -53,6 +74,7 @@ var DesktopLayout = React.createClass({
 
         var newWidgets = _.cloneDeep(this.state.widgets);
         newWidgets[index].zIndex = max + 4;
+        newWidgets[index].minimized = false;
 
         this.setState({
             widgets: newWidgets
@@ -83,17 +105,25 @@ var DesktopLayout = React.createClass({
         });
     },
 
+    close: function (widget) {
+        this.setState({
+            widgets: _.pull(this.state.widgets, widget)
+        });
+    },
 
     render: function () {
         var me = this;
         var widgets = this.state.widgets.map(function(item) {
             return (
-                <Widget widget={item} onMouseDown={me.bringToFront} onMaximize={me.toggleMaximize} onMinimize={me.minimize}></Widget>
+                <Widget widget={item} onMouseDown={me.bringToFront} onMaximize={me.toggleMaximize} onMinimize={me.minimize} onClose={me.close}></Widget>
             );
         });
         return (
             <div className="layout layout-desktop">
-                {widgets}
+                <div className="layout-body">
+                    {widgets}
+                </div>
+                <DesktopTaskbar widgets={this.state.widgets} onActivate={this.bringToFront}></DesktopTaskbar>
             </div>
         );
     }

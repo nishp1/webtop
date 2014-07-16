@@ -1,3 +1,33 @@
+.layout.layout-desktop {
+    position: relative;
+
+    > .layout-body {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        overflow: hidden;
+        bottom: 25px;
+    }
+
+    > .layout-desktop-taskbar {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        margin: 0;
+        height: 25px;
+
+        > .widget-chrome {
+            cursor: pointer;
+            width: 15em;
+            height: 25px;
+            background: #fff;
+            display: inline-block;
+            vertical-align: bottom;
+            margin: 0 5px 0 0;
+        }
+    }
+}
+
 .widget.widget-window {
     position: absolute;
 
