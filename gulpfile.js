@@ -81,17 +81,15 @@ gulp.task('dev', ['build'], function() {
     });
 });
 
-gulp.task('build', ['webpack', 'sass', 'copy', 'vendor'], function() {});
+gulp.task('build', ['webpack', 'sass', 'copy', 'vendor']);
 
-gulp.task('default', ['build'], function() {
-    return setTimeout(function() {
-        gutil.log("**********************************************");
-        gutil.log("* gulp              (development build)");
-        gutil.log("* gulp clean        (rm /dist)");
-        gutil.log("* gulp --production (production build)");
-        gutil.log("* gulp dev          (build and run dev server)");
-        return gutil.log("**********************************************");
-    }, 3000);
+gulp.task('default', function() {
+    gutil.log("********************************************************");
+    gutil.log("* gulp                       (development build)");
+    gutil.log("* gulp clean                 (rm /dist)");
+    gutil.log("* gulp build --production    (production build)");
+    gutil.log("* gulp dev                   (build and run dev server)");
+    return gutil.log("********************************************************");
 });
 
 var createServers = function(port, lrport) {
@@ -116,8 +114,8 @@ var execWebpack = function(config) {
         if (err) {
             throw new gutil.PluginError("execWebpack", err);
         }
-        return gutil.log("[execWebpack]", stats.toString({
-            colors: true
-        }));
+        // return gutil.log("[execWebpack]", stats.toString({
+        //     colors: true
+        // }));
     });
 };

@@ -14,7 +14,7 @@ First clone the repo. Then install development dependencies with npm. Install fr
     cd webtop
     npm install && bower install
 
-Development tasks are run with gulp. Run `gulp dev` to bring up a live preview of the webtop.
+Development tasks are run with gulp. Run `gulp dev` to bring up a live preview of the webtop or `gulp` to see all available tasks.
 
 ## Development Notes
 
