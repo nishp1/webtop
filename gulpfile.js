@@ -15,6 +15,7 @@ var sassConfig = {
     includePaths: ['app/styles']
 };
 var httpPort = 4000;
+var lrPort = 35729;
 
 var vendorPaths = [
     'es5-shim/es5-sham.js',
@@ -67,7 +68,7 @@ gulp.task('webpack', function(callback) {
 
 gulp.task('dev', ['build'], function() {
     var servers;
-    servers = createServers(httpPort, 35729);
+    servers = createServers(httpPort, lrPort);
     gulp.watch(['./app/**/*'], function(evt) {
         return gulp.run('build');
     });
@@ -99,6 +100,7 @@ var createServers = function(port, lrport) {
         return gutil.log("LiveReload listening on", lrport);
     });
     app = express();
+    app.use(require('connect-livereload')());
     app.use(express["static"](path.resolve("./dist")));
     app.listen(port, function() {
         return gutil.log("HTTP server listening on", port);
