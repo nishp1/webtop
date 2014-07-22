@@ -6,41 +6,26 @@ require('gridster');
 var Gridster = React.createClass({
 
     render: function() {
+        var widgets = this.props.children.map(function (item) {
+            var attributes = item.props.widget;
+            return (
+                <li key={attributes.key}
+                    data-row={attributes.row}
+                    data-col={attributes.col}
+                    data-sizex={attributes.width}
+                    data-sizey={attributes.height}
+                >
+                    { item }
+                </li>
+            );
+        })
         return (
             <div className="gridster">
-                { this.transferPropsTo(<ul ref="gridster" className="list-unstyled" />) }
+                <ul ref="gridster" className="list-unstyled">
+                    {widgets}
+                </ul>
             </div>
         );
-    },
-
-    /**
-    *
-    * Render DOM dependent gridster widgets.
-    *
-    **/
-    renderGridsterWidgets: function ($gridster, widgets) {
-        widgets.map(function(item, i) {
-            var attributes = item.props.widget;
-            var key = "widget" + attributes.key;
-
-            // section tag here is a placeholder widget to render
-            // required for gridster resize to work.
-            var $widget = $gridster.add_widget(
-                '<li class="item" id={key}><section></section></li>'.replace('{key}', key),
-                attributes.width,
-                attributes.height,
-                attributes.col,
-                attributes.row
-            );
-            React.renderComponent(item, $widget.children('section')[0]);
-        });
-    },
-
-    removeGridsterWidgets: function ($gridster, widgets) {
-        widgets.map(function(item, i) {
-            var $el = $(item.getDOMNode());
-            $gridster.remove_widget($el.closest('li'));
-        });
     },
 
     componentDidMount: function() {
@@ -71,56 +56,11 @@ var Gridster = React.createClass({
             }
         }).data('gridster');
 
-        this.renderGridsterWidgets(gridster, this.props.children);
-        this.setState({gridster: gridster});
+        this._$gridster = gridster;
     },
 
-    /**
-    *
-    * Get components to add that are new on state change.
-    *
-    **/
-    getNewComponents: function (prevProps) {
-        return this.props.children.filter(function (newChild) {
-            for (var index in prevProps.children) {
-                var oldChild = prevProps.children[index];
-                if (oldChild.props.widget.key === newChild.props.widget.key) {
-                    // pass state and node id to new child for remove widget to work by using getDOMNode method.
-                    newChild._lifeCycleState = 'MOUNTED';
-                    newChild._rootNodeID = oldChild._rootNodeID;
-                    return false;
-                }
-            }
-            return true;
-        });
-    },
-
-    /**
-    *
-    * Get components to remove.
-    *
-    **/
-    getOldComponents: function (prevProps) {
-        var children = this.props.children;
-        return prevProps.children.filter(function (oldChild) {
-            for (var index in children) {
-                var newChild = children[index];
-                if (newChild.props.widget.key === oldChild.props.widget.key) {
-                    return false;
-                }
-            }
-            return true;
-        });
-    },
-
-    componentDidUpdate: function(prevProps, prevState) {
-        var gridster = this.state.gridster;
-
-        var newComponents = this.getNewComponents(prevProps);
-        var oldComponents = this.getOldComponents(prevProps);
-
-        this.renderGridsterWidgets(this.state.gridster, newComponents);
-        this.removeGridsterWidgets(this.state.gridster, oldComponents);
+    componentWillUnmount: function () {
+        this._$gridster.destroy();
     }
 
 });
