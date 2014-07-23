@@ -15,7 +15,7 @@ var sassConfig = {
     includePaths: ['app/styles']
 };
 var httpPort = 4000;
-var lrPort = 35729;
+var lrPort = 35730;
 
 var vendorPaths = [
     'es5-shim/es5-sham.js',
