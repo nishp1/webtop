@@ -27,3 +27,6 @@ app/
     styles/         # Application styles using SCSS based on SMACSS (https://smacss.com/)
     index.html
 ```
+
+### Current Status:
+There are two layouts implemented, Desktop (supports resize, minimize, maximize, restore and close actions) and Gridster (supports resize and close actions). Default layout rendered is Desktop. To see Gridster implementation in action, change line 3 of js/components/app.js `var Layout = require('./layouts/desktop');` to `var Layout = require('./layouts/gridster');`.

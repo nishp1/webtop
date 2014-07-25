@@ -7,7 +7,7 @@ var connect_lr = require('connect-livereload');
 var express = require('express');
 
 var httpPort = 4000;
-var liveReloadPort = 35729;
+var liveReloadPort = 35730;
 
 var createServers = function(port, lrport) {
     var app, lr;
