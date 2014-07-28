@@ -2,8 +2,8 @@
     position: relative;
     width: 100%;
     height: 100%;
-    background-color: white;
-    border: 1px solid #ddd;
+    background: white;
+    border: $widget-border-width solid $widget-bg-inactive;
     box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.15);
 
     -webkit-border-radius: $chrome-border-radius;
@@ -13,8 +13,11 @@
             border-radius: $chrome-border-radius;
 
     &.is-active {
+        border-color: $widget-bg-active;
+
         > .widget-chrome {
             background: $widget-bg-active;
+            border-color: $widget-bg-active;
         }
     }
 
@@ -43,6 +46,7 @@
     font-size: 10pt;
     height: 25px;
     cursor: default;
+    border: $widget-border-width solid $widget-bg-inactive;
 
     -webkit-border-top-left-radius: $chrome-border-radius;
        -moz-border-top-left-radius: $chrome-border-radius;
