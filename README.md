@@ -12,9 +12,9 @@ Next, install [gulp](http://gulpjs.com//) and [Bower](http://bower.io/) with the
 First clone the repo. Then install development dependencies with npm. Install frontend app dependencies with Bower:
 
     cd webtop
-    npm install && bower install
+    npm install
 
-Development tasks are run with gulp. Run `gulp dev` to bring up a live preview of the webtop or `gulp` to see all available tasks.
+Development tasks are run with gulp. Run `gulp dev` or `npm start` to bring up a live preview of the webtop or `gulp` to see all available tasks.
 
 ## Development Notes
 
