@@ -80,6 +80,14 @@
         > li {
             display: inline-block;
             margin-left: 5px;
+
+            > a {
+                color: $chrome-fg;
+
+                &:hover {
+                    color: darken($chrome-fg, 20%);
+                }
+            }
         }
     }
 }
