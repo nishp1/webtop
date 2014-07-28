@@ -48,18 +48,6 @@
     cursor: default;
     border: $widget-border-width solid $widget-bg-inactive;
 
-    -webkit-border-top-left-radius: $chrome-border-radius;
-       -moz-border-top-left-radius: $chrome-border-radius;
-        -ms-border-top-left-radius: $chrome-border-radius;
-         -o-border-top-left-radius: $chrome-border-radius;
-            border-top-left-radius: $chrome-border-radius;
-
-    -webkit-border-top-right-radius: $chrome-border-radius;
-       -moz-border-top-right-radius: $chrome-border-radius;
-        -ms-border-top-right-radius: $chrome-border-radius;
-         -o-border-top-right-radius: $chrome-border-radius;
-            border-top-right-radius: $chrome-border-radius;
-
     > img {
         max-height: 19px;
         max-width: 19px;
