@@ -46,7 +46,8 @@ var WidgetWindow = React.createClass({
             'widget': true,
             'widget-window': true,
             'maximized': widget.maximized,
-            'minimized': widget.minimized
+            'minimized': widget.minimized,
+            'is-active': widget.isActive
         });
 
         var maximizeClasses = cx({
@@ -67,7 +68,6 @@ var WidgetWindow = React.createClass({
                                 <li>
                                     <a title={widget.maximized ? "Restore" : "Maximize"} className={maximizeClasses} onClick={this.handleMaximize}></a>
                                 </li>
-
                                 <li>
                                     <a title="Close" className="glyphicon glyphicon-remove" onClick={this.handleClose}></a>
                                 </li>

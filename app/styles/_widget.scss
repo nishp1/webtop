@@ -6,6 +6,12 @@
     border: 1px solid #ddd;
     box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.15);
 
+    -webkit-border-radius: $chrome-border-radius;
+       -moz-border-radius: $chrome-border-radius;
+        -ms-border-radius: $chrome-border-radius;
+         -o-border-radius: $chrome-border-radius;
+            border-radius: $chrome-border-radius;
+
     &.is-active {
         > .widget-chrome {
             background: $widget-bg-active;
@@ -32,11 +38,23 @@
     }
 }
 .widget-chrome {
-    background: $widget-bg;
-    color: #555;
+    background: $widget-bg-inactive;
+    color: $chrome-fg;
     font-size: 10pt;
     height: 25px;
     cursor: default;
+
+    -webkit-border-top-left-radius: $chrome-border-radius;
+       -moz-border-top-left-radius: $chrome-border-radius;
+        -ms-border-top-left-radius: $chrome-border-radius;
+         -o-border-top-left-radius: $chrome-border-radius;
+            border-top-left-radius: $chrome-border-radius;
+
+    -webkit-border-top-right-radius: $chrome-border-radius;
+       -moz-border-top-right-radius: $chrome-border-radius;
+        -ms-border-top-right-radius: $chrome-border-radius;
+         -o-border-top-right-radius: $chrome-border-radius;
+            border-top-right-radius: $chrome-border-radius;
 
     > img {
         max-height: 19px;

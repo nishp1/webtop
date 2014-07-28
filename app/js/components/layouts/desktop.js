@@ -72,9 +72,13 @@ var DesktopLayout = React.createClass({
         var max = _.max(_.pluck(this.state.widgets, 'zIndex'));
         var index = _.indexOf(this.state.widgets, widget);
 
-        var newWidgets = _.cloneDeep(this.state.widgets);
+        var newWidgets = _.cloneDeep(this.state.widgets.map(function(widget) {
+            widget.isActive = false;
+            return widget;
+        }));
         newWidgets[index].zIndex = max + 4;
         newWidgets[index].minimized = false;
+        newWidgets[index].isActive = true;
 
         this.setState({
             widgets: newWidgets
