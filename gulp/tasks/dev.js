@@ -16,7 +16,9 @@ var createServers = function(port, lrport) {
         return gutil.log("LiveReload listening on", lrport);
     });
     app = express();
-    app.use(connect_lr());
+    app.use(connect_lr({
+        port: lrport
+    }));
     app.use(express["static"](path.resolve("dist")));
     app.listen(port, function() {
         return gutil.log("HTTP server listening on", port);

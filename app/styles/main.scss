@@ -1,8 +1,7 @@
-$widget-bg: #f4f7f8;
-$widget-bg-active: darken($widget-bg, 5%);
+@import 'colors';
 
 html, body, #main, #layout-container {
-    background: #f4f7f8;
+    background: $page-bg;
     width: 100%;
     height: 100%;
 }

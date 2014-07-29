@@ -20,10 +20,11 @@
             cursor: pointer;
             width: 15em;
             height: 25px;
-            background: #fff;
+            background: $desktop-bg;
             display: inline-block;
             vertical-align: bottom;
             margin: 0 5px 0 0;
+            border: 1px solid transparent;
         }
     }
 }
