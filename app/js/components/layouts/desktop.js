@@ -1,9 +1,13 @@
 /** @jsx React.DOM */
-var React           = require('react/addons');
-var _               = require('lodash');
+var React             = require('react/addons');
+var _                 = require('lodash');
 
-var Widget          = require('../widgets/window');
-var WidgetChrome    = require('../widgets/chrome');
+var Widget            = require('../widgets/window');
+var WidgetChrome      = require('../widgets/chrome');
+
+var Manager           = require( '../dashboardManager');
+
+var DashboardSwitcher = require('../dashboards/dashboardSwitcher');
 
 var DesktopTaskbar = React.createClass({
 
@@ -28,43 +32,7 @@ var DesktopLayout = React.createClass({
 
     getInitialState: function () {
         return {
-            widgets: [{
-                key: 'test1',
-                width: 200,
-                height: 200,
-                x: 50,
-                y: 50,
-                zIndex: 1,
-                maximized: false,
-                minimized: false,
-                icon: 'foo',
-                name: 'Widget 1',
-                url: 'about:blank'
-            }, {
-                key: 'test2',
-                width: 300,
-                height: 300,
-                x: 100,
-                y: 100,
-                zIndex: 1,
-                maximized: false,
-                minimized: false,
-                icon: 'foo',
-                name: 'Widget 2',
-                url: 'about:blank'
-            }, {
-                key: 'test3',
-                width: 400,
-                height: 400,
-                x: 150,
-                y: 150,
-                zIndex: 1,
-                maximized: false,
-                minimized: false,
-                icon: 'foo',
-                name: 'Widget 3',
-                url: 'about:blank'
-            }]
+            widgets: Manager.findByName('Dashboard 1').widgets
         };
     },
 
@@ -82,6 +50,14 @@ var DesktopLayout = React.createClass({
 
         this.setState({
             widgets: newWidgets
+        });
+    },
+
+    activateDashboard: function(dashboard) {
+        var newDashboardWidgets = _.cloneDeep(dashboard.widgets);
+
+        this.setState({
+            widgets: newDashboardWidgets
         });
     },
 
@@ -124,6 +100,7 @@ var DesktopLayout = React.createClass({
         });
         return (
             <div className="layout layout-desktop">
+                <DashboardSwitcher dashboards={Manager.getAll()} onDashboardTabClick={this.activateDashboard}></DashboardSwitcher>
                 <div className="layout-body">
                     {widgets}
                 </div>
