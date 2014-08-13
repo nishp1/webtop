@@ -52,6 +52,11 @@ manager.findByName = function( name ) {
     } );
 };
 
+manager.update = function( dashboard ) {
+    var pruned = _.pull(dashboards, dashboard);
+    pruned.push(dashboard);
+};
+
 manager.getAll = function() {
     return dashboards;
 };

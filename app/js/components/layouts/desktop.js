@@ -55,6 +55,7 @@ var DesktopLayout = React.createClass({
 
     activateDashboard: function(dashboard) {
         var newDashboardWidgets = _.cloneDeep(dashboard.widgets);
+        // Manager.update(dashboard);
 
         this.setState({
             widgets: newDashboardWidgets
