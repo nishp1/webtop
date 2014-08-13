@@ -5,7 +5,7 @@ var _                 = require('lodash');
 var Widget            = require('../widgets/window');
 var WidgetChrome      = require('../widgets/chrome');
 
-var Manager           = require( '../dashboardManager');
+var Manager           = new (require( '../dashboardManager'))();
 
 var DashboardSwitcher = require('../dashboards/dashboardSwitcher');
 
@@ -31,16 +31,18 @@ var DesktopTaskbar = React.createClass({
 var DesktopLayout = React.createClass({
 
     getInitialState: function () {
+        var dashboard = Manager.findByName('Dashboard 1');
+
         return {
-            widgets: Manager.findByName('Dashboard 1').widgets
+            dashboard: Manager.findByName('Dashboard 1')
         };
     },
 
     bringToFront: function (widget) {
-        var max = _.max(_.pluck(this.state.widgets, 'zIndex'));
-        var index = _.indexOf(this.state.widgets, widget);
+        var max = _.max(_.pluck(this.state.dashboard.widgets, 'zIndex'));
+        var index = _.indexOf(this.state.dashboard.widgets, widget);
 
-        var newWidgets = _.cloneDeep(this.state.widgets.map(function(widget) {
+        var newWidgets = _.cloneDeep(this.state.dashboard.widgets.map(function(widget) {
             widget.isActive = false;
             return widget;
         }));
@@ -48,53 +50,70 @@ var DesktopLayout = React.createClass({
         newWidgets[index].minimized = false;
         newWidgets[index].isActive = true;
 
+        var dashboard = this.state.dashboard;
+        dashboard.widgets = newWidgets;
+
+        Manager.update(dashboard);
+
         this.setState({
-            widgets: newWidgets
+            dashboard: dashboard
         });
     },
 
     activateDashboard: function(dashboard) {
-        var newDashboardWidgets = _.cloneDeep(dashboard.widgets);
-        // Manager.update(dashboard);
+        Manager.update(this.state.dashboard);
 
         this.setState({
-            widgets: newDashboardWidgets
+            dashboard: dashboard
         });
     },
 
     toggleMaximize: function (widget) {
-        var index = _.indexOf(this.state.widgets, widget);
+        var index = _.indexOf(this.state.dashboard.widgets, widget);
 
-        var newWidgets = _.cloneDeep(this.state.widgets);
+        var newWidgets = _.cloneDeep(this.state.dashboard.widgets);
         newWidgets[index].minimized = false;
         newWidgets[index].maximized = !newWidgets[index].maximized;
 
+        var dashboard = this.state.dashboard;
+        dashboard.widgets = newWidgets;
+
+        Manager.update(dashboard);
+
         this.setState({
-            widgets: newWidgets
+            dashboard: dashboard
         });
     },
 
     minimize: function (widget) {
-        var index = _.indexOf(this.state.widgets, widget);
+        var index = _.indexOf(this.state.dashboard.widgets, widget);
 
-        var newWidgets = _.cloneDeep(this.state.widgets);
+        var newWidgets = _.cloneDeep(this.state.dashboard.widgets);
         newWidgets[index].minimized = true;
         newWidgets[index].maximized = false;
 
+        var dashboard = this.state.dashboard;
+        dashboard.widgets = newWidgets;
+
+        Manager.update(dashboard);
+
         this.setState({
-            widgets: newWidgets
+            dashboard: dashboard
         });
     },
 
     close: function (widget) {
+        var dashboard = _.cloneDeep(this.state.dashboard);
+        dashboard.widgets = _.pull(this.state.dashboard.widgets, widget);
+
         this.setState({
-            widgets: _.pull(this.state.widgets, widget)
+            dashboard: dashboard
         });
     },
 
     render: function () {
         var me = this;
-        var widgets = this.state.widgets.map(function(item) {
+        var widgets = this.state.dashboard.widgets.map(function(item) {
             return (
                 <Widget widget={item} onMouseDown={me.bringToFront} onMaximize={me.toggleMaximize} onMinimize={me.minimize} onClose={me.close}></Widget>
             );
@@ -105,7 +124,7 @@ var DesktopLayout = React.createClass({
                 <div className="layout-body">
                     {widgets}
                 </div>
-                <DesktopTaskbar widgets={this.state.widgets} onActivate={this.bringToFront}></DesktopTaskbar>
+                <DesktopTaskbar widgets={this.state.dashboard.widgets} onActivate={this.bringToFront}></DesktopTaskbar>
             </div>
         );
     }
