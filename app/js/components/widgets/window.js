@@ -35,8 +35,8 @@ var WidgetWindow = React.createClass({
         var widget = this.props.widget;
 
         var styles = {
-            top: widget.y,
-            left: widget.x,
+            top: widget.top,
+            left: widget.left,
             width: widget.width,
             height: widget.height,
             zIndex: widget.zIndex
