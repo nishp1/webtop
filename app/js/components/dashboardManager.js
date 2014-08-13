@@ -1,6 +1,6 @@
 var _ = require( 'lodash' );
 
-var manager = {};
+var Manager = function() {};
 
 var dashboards = [ {
     name: 'Dashboard 1',
@@ -46,19 +46,20 @@ var dashboards = [ {
     } ]
 } ];
 
-manager.findByName = function( name ) {
+Manager.prototype.findByName = function( name ) {
     return _.find( dashboards, {
         'name': name
     } );
 };
 
-manager.update = function( dashboard ) {
-    var pruned = _.pull(dashboards, dashboard);
-    pruned.push(dashboard);
+Manager.prototype.update = function( dashboard ) {
+    var d = this.findByName(dashboard.name);
+    var i = dashboards.indexOf(d);
+    dashboards[i] = dashboard;
 };
 
-manager.getAll = function() {
+Manager.prototype.getAll = function() {
     return dashboards;
 };
 
-module.exports = manager;
+module.exports = Manager;
